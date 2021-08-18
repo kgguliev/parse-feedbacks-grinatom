@@ -1,7 +1,15 @@
 #install.packages("rvest")
+#install.packages("RSelenium")
+#install.packages("rJava")
 
+# Libraries!
+
+library(RSelenium)
+library(rJava)
 library(rvest)
 library(tidyverse)
+
+# Simple scrap from the one-paged web site ----
 
 link1 <- read_html("http://rabota.kitabi.ru/otzyvy-sotrudnikov/grinatom-zao")
 
@@ -19,3 +27,10 @@ comments_link1 <- link1 %>%
   rename(comment = ".")
 
 link1_final <- cbind(dates_link1, comments_link1)
+
+# Trying to scrap comments from the web site with multiple pages ----
+
+#rsDriver()
+
+rs <- rsDriver(browser = "firefox", check = FALSE)
+
