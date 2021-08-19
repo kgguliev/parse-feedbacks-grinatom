@@ -34,3 +34,7 @@ link1_final <- cbind(dates_link1, comments_link1)
 
 rs <- rsDriver(browser = "firefox", check = FALSE)
 
+rd <- rsDriver(browser="chrome",
+               extraCapabilities=list("C:/Users/Кирилл/Desktop/RRR/driver/chromedriver.exe"),
+               chromever="92.0.4515.159",
+               check = FALSE)
