@@ -1,4 +1,4 @@
-# parse-feedbacks-grinatom
+# Web Scraping - Grinatom
 
 Data scraping for content analysis. Parsing comments and feedback on job at Grinatom from the open sources. 
 
