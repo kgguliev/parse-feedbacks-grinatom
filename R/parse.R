@@ -4,10 +4,12 @@
 
 # Libraries!
 
-library(RSelenium)
-library(rJava)
+# library(RSelenium)
+# library(rJava)
 library(rvest)
 library(tidyverse)
+library(readxl)
+library(writexl)
 
 # Simple scrap from the one-paged web site ----
 
@@ -24,7 +26,9 @@ comments_link1 <- link1 %>%
   html_text() %>% 
   str_trim(side = "both") %>% 
   as.data.frame() %>% 
-  rename(comment = ".")
+  rename(comment1 = ".") %>% 
+  as.data.frame() %>% 
+  mutate(comment2 = "")
 
 link1_final <- cbind(dates_link1, comments_link1)
 
@@ -38,3 +42,11 @@ link1_final <- cbind(dates_link1, comments_link1)
 #                extraCapabilities=list("C://Users//Кирилл//Desktop//RRR//driver//chromedriver.exe"),
 #                chromever="92.0.4515.107",
 #                check = FALSE)
+
+python_excel <- read_xlsx("./output/О-Работе-комментарии-Гринатом.xlsx") %>% 
+  rename(comment1 = positive,
+         comment2 = negative) %>% 
+  select(-1) %>% 
+  rbind(comments_link1) %>% 
+  writexl::write_xlsx("./output/comments_all_greenatom.xlsx")
+
